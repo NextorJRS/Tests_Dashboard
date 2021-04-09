@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-indigo mat-elevation-z8 fixed-top">
+    <div class="container-fluid bg-indigo">
+        <button mat-button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
+            aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" mat-icon-button color="primary">
+            <mat-icon>dashboard</mat-icon>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a [routerLink]="['/home']" routerLinkActive="active" class="nav-link" mat-button>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['/dashboard']" routerLinkActive="active" class="nav-link" mat-button>
+                        Dashboard
+                    </a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <button class="text-light" matBadgeColor="accent" *ngIf="user.exito" mat-icon-button matBadge="7"
+                    [matBadgeHidden]="hidden" (click)="toggleBadge()">
+                    <mat-icon>notifications</mat-icon>
+                </button>
+                <button *ngIf="user.exito" (click)="logout()" color="accent" mat-stroked-button class="text-light">
+                    <small>{{user.desc_rol}}</small>
+                    <mat-icon>power_settings_new</mat-icon>
+                </button>
+                <button [routerLink]="['/login']" routerLinkActive="active" *ngIf="!user.exito" mat-icon-button
+                    class="text-light">
+                    <mat-icon>person</mat-icon>
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+<mat-drawer-container class="sidenav-container" autosize>
+
+    <mat-drawer #drawer class="sidenav mat-elevation-z6" mode="side">
+        <div class="list-group">
+            <a [routerLink]="['/login']" routerLinkActive="active" *ngIf="!user.exito" mat-button
+                class="list-group-item list-group-item-action">
+                Login
+            </a>
+            <a (click)="logout()" *ngIf="user.exito" mat-button class="list-group-item list-group-item-action">
+                Logout
+            </a>
+            <a [routerLink]="['/home']" routerLinkActive="active" mat-button
+                class="list-group-item list-group-item-action">
+                Home
+            </a>
+            <a [routerLink]="['/dashboard']" routerLinkActive="active" mat-button
+                class="list-group-item list-group-item-action">
+                Dashboard
+            </a>
+        </div>
+    </mat-drawer>
+
+    <div class="">
+        <button appRotate class="rotate" mat-icon-button color="primary" (click)="drawer.toggle()">
+            <mat-icon>menu_open</mat-icon>
+        </button>
+    </div>
+    <router-outlet></router-outlet>
+</mat-drawer-container>

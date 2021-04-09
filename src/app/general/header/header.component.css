@@ -1,0 +1,18 @@
+.navbar { height: 56px; }
+.bg-indigo { background: #3f51b5 !important }
+.sidenav { width: 150px; padding-top: 56.5px;}
+.sidenav a { border-radius: 0px;}
+.sidenav-container {
+    height: 100vh;
+    border: 1px solid rgba(63, 81, 181, 0.5);
+    padding-top: 56.5px;
+}
+.rotate { 
+    transform: rotate(180deg);
+    animation-duration: 500ms;
+}
+.sidenav .active {
+    background: rgba(63,81,181,.15);
+    color: #3f51b5;
+}
+  

@@ -1,0 +1,150 @@
+<div class="container animated fadeIn">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="container pt-3 pb-3 mat-elevation-z3 m-3">
+                <div class="row" [formGroup]="forma">
+                    <div class="col-8">
+                        <p class="h4 fw-light">
+                            Reservation
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <button (click)="onSubmit()" 
+                            [disabled]="!forma.valid" mat-icon-button color="primary">
+                            <mat-icon>save</mat-icon>
+                        </button>
+                        <button (click)="clear()" mat-icon-button color="accent">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </div>
+                    <div class="col-12 border-top mb-2">
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput placeholder="nom" formControlName="nombre" required>
+                            <mat-icon matSuffix>person</mat-icon>
+                            <mat-error *ngIf="forma.get('nombre')?.invalid">You must enter a value</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Correo</mat-label>
+                            <input matInput placeholder="mail" formControlName="correo" required>
+                            <mat-icon matSuffix>mail</mat-icon>
+                            <mat-error *ngIf="forma.get('correo')?.errors?.required">Not a valid email</mat-error>
+                            <mat-error *ngIf="forma.get('correo')?.errors?.gmail">Not a valid gmail</mat-error>
+                            <mat-error *ngIf="forma.get('correo')?.errors?.hotmail">Not a valid hotmail</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Reserva</mat-label>
+                            <input type="date" matInput placeholder="fecha" formControlName="reserva" required>
+                            <mat-icon matSuffix>calendar_today</mat-icon>
+                            <mat-error *ngIf="forma.get('reserva')?.errors?.required">Not a valid date</mat-error>
+                            <mat-error *ngIf="forma.get('reserva')?.errors?.mayor">Need a small date</mat-error>
+                            <mat-error *ngIf="forma.get('reserva')?.errors?.menor">Need a bigger date</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>País</mat-label>
+                            <mat-select formControlName="pais" name="pais" required>
+                                <mat-option *ngFor="let contry of contrys" [value]="contry.value">
+                                    {{contry.contry}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-icon matSuffix>public</mat-icon>
+                            <mat-error *ngIf="forma.get('reserva')?.invalid">Not a valid contry</mat-error>
+                          </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div appCard class="container-fluid pt-3 pb-3 mat-elevation-z3 m-3 pointer">
+                <img src="../../../assets/img/Graphic1.png" alt="" class="img-fluid">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6">
+            <div appCard class="pt-3 pb-3 m-3 mat-elevation-z3 container pointer">
+                <div class="row text-info">
+                    <div class="col-9">
+                        <p class="m-0 h3 fw-light">277</p>
+                        <p class="m-0 fw-light text-secondary">New post</p>
+                    </div>
+                    <div class="col-3">
+                        <mat-icon class="h1">post_add</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div appCard class="pt-3 pb-3 m-3 mat-elevation-z3 container pointer">
+                <div class="row text-warning">
+                    <div class="col-9">
+                        <p class="m-0 h3 fw-light">158</p>
+                        <p class="m-0 fw-light text-secondary">New Comments</p>
+                    </div>
+                    <div class="col-3">
+                        <mat-icon class="h1">question_answer</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div appCard class="pt-3 pb-3 m-3 mat-elevation-z3 container pointer">
+                <div class="row text-danger">
+                    <div class="col-9">
+                        <p class="m-0 h3 fw-light">483</p>
+                        <p class="m-0 fw-light text-secondary">Total Visits</p>
+                    </div>
+                    <div class="col-3">
+                        <mat-icon class="h1">person_pin_circle</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div appCard class="pt-3 pb-3 m-3 mat-elevation-z3 container pointer">
+                <div class="row text-success">
+                    <div class="col-9">
+                        <p class="m-0 h3 fw-light">83.33 %</p>
+                        <p class="m-0 fw-light text-secondary">Total Sales</p>
+                    </div>
+                    <div class="col-3">
+                        <mat-icon class="h1">trending_up</mat-icon>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 83.33%"
+                                aria-valuenow="83.33" aria-valuemin="0" aria-valuemax="83.33"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div appCard class="pt-3 pb-3 m-3 mat-elevation-z3 container pointer">
+                <div class="row text-primary">
+                    <div class="col-9">
+                        <p class="m-0 h3 fw-light">64.89 %</p>
+                        <p class="m-0 fw-light text-secondary">Reviews</p>
+                    </div>
+                    <div class="col-3">
+                        <mat-icon class="h1">reviews</mat-icon>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 64.89%"
+                                aria-valuenow="64.89" aria-valuemin="0" aria-valuemax="64.89"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
